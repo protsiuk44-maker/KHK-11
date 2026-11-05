@@ -1,0 +1,77 @@
+
+#pragma once
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+class Student
+{
+    string name;
+    string surname;
+    string university;
+    int age;
+
+public:
+    Student() {}
+
+    Student(string n, string sur, string un, int a)
+    {
+        name = n;
+        surname = sur;
+        university = un;
+        age = a;
+    }
+
+    void Init()
+    {
+        cin >> name >> surname >> university >> age;
+    }
+    void Print()
+    {
+        cout << name " Ilya" << endl;
+       cout << surname << " Protsiuk" << endl;
+        cout << university << " it step " << endl;
+        cout << age" 16" << endl;
+    }
+    void WriteFile(string filename)
+    {
+        ofstream out(filename, ios::app);
+        out << name " Ilya" << endl;
+        out << << surname << " Protsiuk" << endl;
+        out << university << " it step " << endl;
+        out << age" 16" << endl;
+    }
+    static void ReadFile(string filename)
+{
+    ifstream in(filename);
+    Student s;
+    while (in >> s.name)
+    {
+        in >> s.surname;
+        in >> s.university;
+        in >> s.age;
+
+        s.Print();
+    }
+    in.close();
+}
+};
+
+
+#include "Student.h"
+int main()
+{
+    Student students[5];
+
+    for (int i = 0; i < 5; i++)
+    {
+        students[i].Init();
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        students[i].WriteFile("students.txt");
+    }
+    Student::ReadFile("students.txt");
+    return 0;
+}
