@@ -1,0 +1,172 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Vehicle
+{
+protected:
+    int wheels;
+    string model;
+    string color;
+    int year;
+    double price;
+    double speed;
+public:
+    Vehicle() {}
+    Vehicle(string md, string cl, int wh, int y, double pr, double sp)
+    {
+        model = md;
+        color = cl;
+        wheels = wh;
+        year = y;
+        price = pr;
+        speed = sp;
+    }
+
+    void Init()
+    {
+        cout << "Enter model: ";
+        cin >> model;
+        cout << "Enter wheels: ";
+        cin >> wheels;
+        cout << "Enter color: ";
+        cin >> color;
+        cout << "Enter year: ";
+        cin >> year;
+        cout << "Enter price: ";
+        cin >> price;
+        cout << "Enter speed: ";
+        cin >> speed;
+    }
+
+    void Print()
+    {
+        cout << "Model: " << model << endl;
+        cout << "Wheels: " << wheels << endl;
+        cout << "Color: " << color << endl;
+        cout << "Year: " << year << endl;
+        cout << "Price: " << price << endl;
+        cout << "Speed: " << speed << endl;
+    }
+};
+
+class Motorcycle : public Vehicle
+{
+    int weight;
+    int trunk;
+public:
+    Motorcycle() : Vehicle(), weight(0), trunk(0) {}
+
+    Motorcycle(string md, string cl, int wh, int y, double pr, double sp, int w, int t)
+        : Vehicle(md, cl, wh, y, pr, sp), weight(w), trunk(t) {}
+
+    void InitMotorcycle()
+    {
+        Init(); 
+        cout << "Enter weight: ";
+        cin >> weight;
+        cout << "Enter trunk capacity: ";
+        cin >> trunk;
+    }
+
+    void PrintMotorcycle()
+    {
+        Print();
+        cout << "Weight: " << weight << endl;
+        cout << "Trunk: " << trunk << endl;
+    }
+};
+class Bicycle : public Vehicle
+{
+    int gears;
+    string type;
+public:
+    Bicycle() {}
+    Bicycle(string md, string cl, int wh, int y, double pr, double sp, int g, string t)  : Vehicle(md, cl, wh, y, pr, sp), gears(g), type(t) {}
+    void InitBicycle()
+    {
+        Init();
+        cout << "Enter gears: ";
+        cin >> gears;
+        cout << "Enter type: ";
+        cin >> type;
+    }
+
+    void PrintBicycle()
+    {
+        Print();
+        cout << "Gears: " << gears << endl;
+        cout << "Type: " << type << endl;
+    }
+};
+
+class Car : public Vehicle
+{
+    int doors;
+    string engine;
+
+public:
+    Car()  {}
+    Car(string md, string cl, int wh, int y, double pr, double sp, int d, string e)  : Vehicle(md, cl, wh, y, pr, sp), doors(d), engine(e) {}
+    void InitCar()
+    {
+        Init();
+        cout << "Enter doors: ";
+        cin >> doors;
+        cout << "Enter engine type: ";
+        cin >> engine;
+    }
+
+    void PrintCar()
+    {
+        Print();
+        cout << "Doors: " << doors << endl;
+        cout << "Engine: " << engine << endl;
+    }
+};
+
+class Bus : public Vehicle
+{
+    int seats;
+    int routeNumber;
+public:
+    Bus()  {}
+    Bus(string md, string cl, int wh, int y, double pr, double sp, int s, int r)  : Vehicle(md, cl, wh, y, pr, sp), seats(s), routeNumber(r) {}
+    void InitBus()
+    {
+        Init();
+        cout << "Enter seats count: ";
+        cin >> seats;
+        cout << "Enter route number: ";
+        cin >> routeNumber;
+    }
+    void PrintBus()
+    {
+        Print();
+        cout << "Seats: " << seats << endl;
+        cout << "Route Number: " << routeNumber << endl;
+    }
+};
+int main()
+{
+    Motorcycle obj1;
+    obj1.InitMotorcycle();
+    cout << " Result" << endl;
+    obj1.PrintMotorcycle();
+
+    Bicycle obj2;
+    obj2.InitBicycle();
+    cout << " Result" << endl;
+    obj2.PrintBicycle();
+
+    Car obj3;
+    obj3.InitCar();
+    cout << " Result" << endl;
+    obj3.PrintCar();
+
+    Bus obj4;
+    obj4.InitBus();
+    cout << " Result" << endl;
+    obj4.PrintBus();
+
+    return 0;
+}
