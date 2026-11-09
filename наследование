@@ -1,0 +1,113 @@
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Animal
+{
+protected:
+    string species;
+    double weight;
+    string color;
+    string food;
+
+public:
+    Animal() {}
+    Animal(string sp, double wg, string col, string fd)
+    {
+        species = sp;
+        weight = wg;
+        color = col;
+        food = fd;
+    }
+
+    void Print()
+    {
+        cout << "Species: " << species << endl;
+        cout << "Weight: " << weight << endl;
+        cout << "Color: " << color << endl;
+        cout << "Food: " << food << endl;
+    }
+};
+
+class Parrot : public Animal
+{
+    string name;
+    bool talking;
+    double wingspan;
+
+public:
+    Parrot() {}
+    Parrot(string sp, double wg, string col, string fd, string nm, bool talk, double wing) : Animal(sp, wg, col, fd)
+    {
+        name = nm;
+        talking = talk;
+        wingspan = wing;
+    }
+
+    void Print()
+    {
+        Animal::Print();
+        cout << "Name: " << name << endl;
+        cout << "Talking: " << talking << endl;
+        cout << "Wingspan: " << wingspan << " sm" << endl << endl;
+    }
+};
+
+class Dog : public Animal
+{
+    string name;
+    string breed;
+    int age;
+
+public:
+    Dog() {}
+    Dog(string sp, double wg, string col, string fd, string nm, string br, int a) : Animal(sp, wg, col, fd)
+    {
+        name = nm;
+        breed = br;
+        age = a;
+    }
+
+    void Print()
+    {
+        Animal::Print();
+        cout << "Name: " << name << endl;
+        cout << "Breed: " << breed << endl;
+        cout << "Age: " << age << endl << endl;
+    }
+};
+
+class Cat : public Animal
+{
+    string name;
+    int age;
+
+public:
+    Cat() {}
+    Cat(string sp, double wg, string col, string fd, string nm, int a) : Animal(sp, wg, col, fd)
+    {
+        name = nm;
+        age = a;
+    }
+
+    void Print()
+    {
+        Animal::Print();
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl << endl;
+    }
+};
+
+int main()
+{
+    Parrot obj1("Bird", 200, "yellow", "nuts", "Kesha", true, 20);
+    Dog obj2("Dog", 3000, "black", "meat", "Bobik", "Labrador", 5);
+    Cat obj3("Cat", 4000, "white", "fish", "Murzik", 3);
+
+    obj1.Print();
+    obj2.Print();
+    obj3.Print();
+
+    return 0;
+}
