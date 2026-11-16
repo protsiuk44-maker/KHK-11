@@ -1,0 +1,231 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Vehicle
+{
+protected:
+    int wheels;
+    string model;
+    string color;
+    int year;
+    double price;
+    double speed;
+    double fuel;
+    int passengers;
+
+public:
+    Vehicle() {}
+    Vehicle(string md, string cl, int wh, int y, double pr, double sp, double fl, int pas)
+    {
+        model = md;
+        color = cl;
+        wheels = wh;
+        year = y;
+        price = pr;
+        speed = sp;
+        fuel = fl;
+        passengers = pas;
+    }
+
+    virtual void Init()
+    {
+        cout << "Enter the model: ";
+        cin >> model;
+        cout << "Enter the color: ";
+        cin >> color;
+        cout << "Enter the manufacturing year: ";
+        cin >> year;
+        cout << "Enter the price: ";
+        cin >> price;
+        cout << "Enter the maximum speed: ";
+        cin >> speed;
+        cout << "Enter the fuel consumption per 100 km: ";
+        cin >> fuel;
+        cout << "Enter the number of wheels: ";
+        cin >> wheels;
+        cout << "Enter the passenger capacity: ";
+        cin >> passengers;
+    }
+
+    virtual void Print()
+    {
+        cout << "Model: " << model << endl;
+        cout << "Color: " << color << endl;
+        cout << "Year: " << year << endl;
+        cout << "Price: " << price << endl;
+    }
+
+    virtual double MaxSpeed() = 0;
+    virtual double FuelConsumption() = 0;
+    virtual int WheelsCount() = 0;
+    virtual int PassengersCount() = 0;
+};
+
+class Motorcycle : public Vehicle
+{
+    int weight;
+    int trunk;
+public:
+    Motorcycle() : Vehicle(), weight(0), trunk(0) {}
+
+    Motorcycle(string md, string cl, int wh, int y, double pr, double sp, double fl, int pas, int w, int t)
+        : Vehicle(md, cl, wh, y, pr, sp, fl, pas), weight(w), trunk(t) {}
+
+    void Init()
+    {
+        Vehicle::Init();
+        cout << "Enter the curb weight: ";
+        cin >> weight;
+        cout << "Enter the storage capacity: ";
+        cin >> trunk;
+    }
+
+    void Print()
+    {
+        Vehicle::Print();
+        cout << "Curb weight: " << weight << endl;
+        cout << "Storage capacity: " << trunk << endl;
+        cout << "Maximum speed: " << MaxSpeed() << endl;
+        cout << "Fuel consumption: " << FuelConsumption() << endl;
+        cout << "Number of wheels: " << WheelsCount() << endl;
+        cout << "Passenger capacity: " << PassengersCount() << endl;
+    }
+
+    double MaxSpeed() { return speed; }
+    double FuelConsumption() { return fuel; }
+    int WheelsCount() { return wheels; }
+    int PassengersCount() { return passengers; }
+};
+
+class Bicycle : public Vehicle
+{
+    int gears;
+    string type;
+public:
+    Bicycle() {}
+    Bicycle(string md, string cl, int wh, int y, double pr, double sp, double fl, int pas, int g, string t)
+        : Vehicle(md, cl, wh, y, pr, sp, fl, pas), gears(g), type(t) {}
+
+    void Init()
+    {
+        Vehicle::Init();
+        cout << "Enter the number of gears: ";
+        cin >> gears;
+        cout << "Enter the bicycle type: ";
+        cin >> type;
+    }
+
+    void Print()
+    {
+        Vehicle::Print();
+        cout << "Number of gears: " << gears << endl;
+        cout << "Bicycle type: " << type << endl;
+        cout << "Maximum speed: " << MaxSpeed() << endl;
+        cout << "Fuel consumption: " << FuelConsumption() << endl;
+        cout << "Number of wheels: " << WheelsCount() << endl;
+        cout << "Passenger capacity: " << PassengersCount() << endl;
+    }
+
+    double MaxSpeed() { return speed; }
+    double FuelConsumption() { return 0; }
+    int WheelsCount() { return wheels; }
+    int PassengersCount() { return passengers; }
+};
+
+class Car : public Vehicle
+{
+    int doors;
+    string engine;
+public:
+    Car() {}
+    Car(string md, string cl, int wh, int y, double pr, double sp, double fl, int pas, int d, string e): Vehicle(md, cl, wh, y, pr, sp, fl, pas), doors(d), engine(e) {}
+    void Init()
+    {
+        Vehicle::Init();
+        cout << "Enter the number of doors: ";
+        cin >> doors;
+        cout << "Enter the engine type: ";
+        cin >> engine;
+    }
+
+    void Print()
+    {
+        Vehicle::Print();
+        cout << "Number of doors: " << doors << endl;
+        cout << "Engine type: " << engine << endl;
+        cout << "Maximum speed: " << MaxSpeed() << endl;
+        cout << "Fuel consumption: " << FuelConsumption() << endl;
+        cout << "Number of wheels: " << WheelsCount() << endl;
+        cout << "Passenger capacity: " << PassengersCount() << endl;
+    }
+
+    double MaxSpeed() { return speed; }
+    double FuelConsumption() { return fuel; }
+    int WheelsCount() { return wheels; }
+    int PassengersCount() { return passengers; }
+};
+
+class Bus : public Vehicle
+{
+    int routeNumber;
+public:
+    Bus() {}
+    Bus(string md, string cl, int wh, int y, double pr, double sp, double fl, int pas, int r) : Vehicle(md, cl, wh, y, pr, sp, fl, pas), routeNumber(r) {}
+
+    void Init()
+    {
+        Vehicle::Init();
+        cout << "Enter the route number: ";
+        cin >> routeNumber;
+    }
+
+    void Print()
+    {
+        Vehicle::Print();
+        cout << "Route number: " << routeNumber << endl;
+        cout << "Maximum speed: " << MaxSpeed() << endl;
+        cout << "Fuel consumption: " << FuelConsumption() << endl;
+        cout << "Number of wheels: " << WheelsCount() << endl;
+        cout << "Passenger capacity: " << PassengersCount() << endl;
+    }
+
+    double MaxSpeed() { return speed; }
+    double FuelConsumption() { return fuel; }
+    int WheelsCount() { return wheels; }
+    int PassengersCount() { return passengers; }
+};
+
+int main()
+{
+    Vehicle* ptr = nullptr;
+    int choice;
+
+    cout << "Select a vehicle type:\n1 - Motorcycle\n2 - Bicycle\n3 - Car\n4 - Bus\nEnter your choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        ptr = new Motorcycle();
+        break;
+    case 2:
+        ptr = new Bicycle();
+        break;
+    case 3:
+        ptr = new Car();
+        break;
+    case 4:
+        ptr = new Bus();
+        break;
+    default:
+        cout << "Invalid selection. Please try again." << endl;
+        return 0;
+    }
+
+    ptr->Init();
+    cout << "\nVehicle specifications:" << endl;
+    ptr->Print();
+
+    delete ptr;
+    return 0;
+}
