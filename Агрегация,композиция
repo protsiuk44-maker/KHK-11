@@ -1,0 +1,86 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class CPU {
+public:
+    string name;
+    CPU(string n = "Intel i5") : name(n) {}
+    void Print() const {
+        cout << "CPU: " << name << endl;
+    }
+}
+class SSD {
+public:
+    int gb;
+    SSD(int g = 512) : gb(g) {}
+    void Print() const {
+        cout << "SSD: " << gb << " GB" << endl;
+    }
+};
+
+class RAM {
+public:
+    int gb;
+    RAM(int g = 16) : gb(g) {}
+    void Print() const {
+        cout << "RAM: " << gb << " GB" << endl;
+    }
+};
+
+class Mouse {
+public:
+    string name;
+    Mouse(string n = "Logitech") : name(n) {}
+    void Print() const {
+        cout << "Mouse: " << name << endl;
+    }
+};
+
+class Keb {
+public:
+    string name;
+    Keb(string n = "Keychron") : name(n) {}
+    void Print() const {
+        cout << "Keb: " << name << endl;
+    }
+};
+
+class Laptop {
+private:
+    string model;
+    double price;
+    CPU cpu;
+    SSD ssd;
+    RAM ram;
+    Mouse* mouse;
+    Keb* keb;
+public:
+    Laptop(string m, double p, string cpuName, int ssdGb, int ramGb, Mouse* mPtr = nullptr, Keb* kPtr = nullptr) : model(m), price(p), cpu(cpuName), ssd(ssdGb), ram(ramGb), mouse(mPtr), keb(kPtr) {}
+    void SetMouse(Mouse* mPtr) {
+        mouse = mPtr;
+    }
+
+    void SetKeb(Keb* kPtr) {
+        keb = kPtr;
+  void Print() const {
+        cout << "Model: " << model << ", Price: " << price << endl;
+        cpu.Print();
+        ssd.Print();
+        ram.Print();
+        if (mouse != nullptr) {
+            mouse->Print();
+        }
+        if (keb != nullptr) {
+            keb->Print();
+        }
+    }
+};
+int main() {
+    Mouse m("Razer");
+    Keb k("HyperX");
+
+    Laptop lap("ASUS", 1200.0, "Ryzen 7", 1024, 32, &m, &k);
+    lap.Print();
+
+    return 0;
+}
