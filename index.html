@@ -1,0 +1,56 @@
+<!-- дз по джс -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Получение прогноза погоды</title>
+
+    <style>
+        * {
+            font-size: 32px;
+        }
+
+        span {
+            color: rgb(255, 0, 0);
+            font-size: 32px;
+            box-shadow: 0px 0px 10px rgb(0, 255, 221);
+        }
+
+        button {
+            color:rgb(0, 255, 221);
+            border: 1px solid rgb(0, 255, 221);
+            box-shadow: 0px 0px 10px rgb(255, 0, 255);
+            width: 200px;
+            background-color: rgb(3, 213, 213);
+        } 
+       h1 {
+            color: rgb(255, 0, 255);
+            box-shadow: 0px 0px 10px rgb(0, 221, 255);
+            background-color: rgb(0, 255, 221);
+        } 
+         
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Прогноз погоды - <span id="city"></span></h1>
+
+    <input type="text" id="cityInput" placeholder="Введите город">
+
+    <button id="searchBtn">Найти</button>
+
+    <div id="weather"></div>
+
+    <img id="img" />
+
+    <div id="sunset"></div>
+    <div id="sunrise"></div>
+
+    <script src="./script.js"></script>
+
+</body>
+</html>
